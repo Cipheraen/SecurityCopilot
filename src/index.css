@@ -1,0 +1,109 @@
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@import "tailwindcss";
+
+/* ── Neon Pop Design Tokens ── */
+@theme {
+  --color-neon-bg: #0a0a0a;
+  --color-neon-surface: #1a1a1a;
+  --color-neon-elevated: #252525;
+  --color-neon-border: #2a2a2a;
+  --color-neon-muted: #4a4a4a;
+
+  --color-neon-crimson: #e63956;
+  --color-neon-purple: #8b5cf6;
+  --color-neon-cyan: #67e8f9;
+
+  --color-neon-text: #f0e6e6;
+  --color-neon-text-muted: #a0a0a0;
+
+  --font-heading: 'Space Mono', ui-monospace, monospace;
+  --font-body: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ── Base Styles ── */
+html {
+  background-color: #0a0a0a;
+  color: #f0e6e6;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(139, 92, 246, 0.35);
+  color: #f0e6e6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* ── Neon Utility Classes ── */
+
+/* Glow effects */
+.neon-glow-crimson {
+  box-shadow: 0 0 12px rgba(230, 57, 86, 0.3), 0 0 4px rgba(230, 57, 86, 0.15);
+}
+.neon-glow-purple {
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.3), 0 0 4px rgba(139, 92, 246, 0.15);
+}
+.neon-glow-cyan {
+  box-shadow: 0 0 12px rgba(103, 232, 249, 0.3), 0 0 4px rgba(103, 232, 249, 0.15);
+}
+
+/* Gradient text */
+.neon-gradient-text {
+  background: linear-gradient(135deg, #e63956, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.neon-gradient-text-alt {
+  background: linear-gradient(135deg, #8b5cf6, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient borders / accents */
+.neon-gradient-border {
+  border-image: linear-gradient(135deg, #e63956, #8b5cf6) 1;
+}
+
+/* Active nav indicator bar */
+.neon-active-bar {
+  position: relative;
+}
+.neon-active-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(180deg, #e63956, #8b5cf6);
+  box-shadow: 0 0 8px rgba(230, 57, 86, 0.4);
+}

@@ -1,0 +1,488 @@
+import { motion } from 'framer-motion'
+import {
+  BrainCircuit,
+  Shield,
+  Lock,
+  KeyRound,
+  Network,
+  Eye,
+  AlertTriangle,
+  Server,
+  Users,
+  Fingerprint,
+  ArrowRight,
+  CheckCircle2,
+  XCircle,
+  Layers,
+  Globe,
+  Code2,
+  Cpu,
+  BarChart3,
+  Puzzle,
+} from 'lucide-react'
+import { PageShell } from '../../components/PageShell'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const stagger = {
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+}
+
+export function AzureBestPractices() {
+  return (
+    <PageShell
+      title="Azure AI Foundry & Copilot Studio"
+      description="Best practices for building and deploying AI solutions with Azure AI Foundry and Microsoft Copilot Studio, including agent security, identity management, and platform architecture."
+      icon={BrainCircuit}
+    >
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+        className="space-y-10"
+      >
+        {/* Copilot Studio Agent Security */}
+        <motion.section variants={fadeInUp} transition={{ duration: 0.4 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Shield className="w-5 h-5 text-neon-crimson" />
+            <h2 className="text-xl font-heading font-bold text-neon-text">Copilot Studio Agent Security</h2>
+          </div>
+          <p className="text-sm text-neon-text-muted mb-6 leading-relaxed">
+            Copilot Studio follows the Security Development Lifecycle (SDL) and provides comprehensive security and governance controls including geographic data residency, DLP enforcement, and regulatory compliance.
+          </p>
+
+          {/* Auth Best Practices */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-crimson mb-3 flex items-center gap-2">
+              <Lock className="w-4 h-4" />
+              Authentication Best Practices
+            </h3>
+            <div className="grid gap-3">
+              {[
+                {
+                  title: 'Default Entra ID Authentication',
+                  desc: 'New agents automatically use Microsoft Entra ID authentication without manual setup. "Authenticate with Microsoft" is enabled by default.',
+                },
+                {
+                  title: 'Enforce Auth via DLP',
+                  desc: 'Configure a data policy that blocks the connector "Chat without Microsoft Entra ID authentication" to prevent agents from being published without authentication.',
+                },
+                {
+                  title: 'Conditional Access Policies',
+                  desc: 'Apply Microsoft Entra Conditional Access policies for corporate devices and networks.',
+                },
+                {
+                  title: 'MFA Enforcement',
+                  desc: 'Enable multifactor authentication for all Power Platform and Copilot Studio users through Microsoft Entra ID.',
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4 hover:border-neon-crimson/30 transition-colors"
+                >
+                  <h4 className="text-sm font-heading font-bold text-neon-text mb-1">{item.title}</h4>
+                  <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DLP Governance */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-crimson mb-3 flex items-center gap-2">
+              <Eye className="w-4 h-4" />
+              Data Loss Prevention (DLP) Governance
+            </h3>
+            <div className="bg-neon-surface border border-neon-border rounded-xl p-5">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="mt-0.5 flex items-center justify-center w-6 h-6 rounded-md bg-neon-crimson/15 text-neon-crimson flex-shrink-0">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                </div>
+                <p className="text-xs text-neon-text leading-relaxed">
+                  Since early 2025, <span className="text-neon-crimson font-bold">DLP enforcement is mandatory for all tenants</span> -- exemptions are no longer supported.
+                </p>
+              </div>
+              <ul className="space-y-2">
+                {[
+                  'Establish environment-level or tenant-level data policy rules to restrict unused connectors.',
+                  'Classify connectors as "Business" vs. "Non-business" -- non-business connectors are automatically blocked.',
+                  'Block all connectors that the project doesn\'t require.',
+                  'Apply data policies to environments to block unused channels or settings.',
+                  'Persistent label inheritance ensures new content generated by agents inherits sensitivity labels from source content.',
+                ].map((text, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <ArrowRight className="w-3 h-3 mt-0.5 text-neon-purple flex-shrink-0" />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Environment Controls */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-crimson mb-3 flex items-center gap-2">
+              <Server className="w-4 h-4" />
+              Environment & Access Control
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { icon: <KeyRound className="w-4 h-4" />, text: 'Restrict agent permissions to essential data sources only (least privilege).' },
+                { icon: <Users className="w-4 h-4" />, text: 'Use a service principal account for production deployment and custom connector auth.' },
+                { icon: <Lock className="w-4 h-4" />, text: 'Manage user access to environments through Microsoft Entra ID groups.' },
+                { icon: <Shield className="w-4 h-4" />, text: 'Only bot authors and just-in-time admins should have access to environments and data stores.' },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4 flex items-start gap-3"
+                >
+                  <div className="text-neon-purple mt-0.5 flex-shrink-0">{item.icon}</div>
+                  <p className="text-xs text-neon-text-muted leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 2025-2026 Enhancements */}
+          <div>
+            <h3 className="text-sm font-heading font-bold text-neon-purple mb-3 flex items-center gap-2">
+              <Network className="w-4 h-4" />
+              2025-2026 Security Enhancements
+            </h3>
+            <div className="bg-neon-surface border border-neon-border rounded-xl p-5">
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  { label: 'Proactive Governance', desc: 'New managed security capabilities focusing on security by default.' },
+                  { label: 'Network Isolation', desc: 'IP Firewall and VNET support for App Insight and HTTP connectors.' },
+                  { label: 'Sensitive Data Masking', desc: 'Runtime masking and audio suppression for sensitive data.' },
+                  { label: 'Auto-Labeling', desc: 'Dataverse tables auto-labeled with the Data Map Dataverse Connector.' },
+                  { label: 'Real-Time Protection', desc: 'Near-real-time security controls for AI agents.' },
+                  { label: 'Admin Visibility', desc: 'Agents built with Agent Builder viewable in Microsoft 365 admin center.' },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 text-neon-cyan flex-shrink-0" />
+                    <div>
+                      <span className="text-xs font-heading font-bold text-neon-text">{item.label}</span>
+                      <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Common Security Pitfalls */}
+        <motion.section variants={fadeInUp} transition={{ duration: 0.4 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <AlertTriangle className="w-5 h-5 text-neon-crimson" />
+            <h2 className="text-xl font-heading font-bold text-neon-text">Common Security Pitfalls</h2>
+          </div>
+          <div className="bg-neon-surface border border-neon-crimson/20 rounded-xl p-5 neon-glow-crimson">
+            <div className="space-y-3">
+              {[
+                'Publishing agents without authentication configured.',
+                'Overly permissive connector policies allowing unnecessary data source access.',
+                'Lack of environment-level DLP enforcement.',
+                'Insufficient monitoring and auditing of agent interactions.',
+                'Not restricting unused channels and skills.',
+              ].map((text, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <XCircle className="w-4 h-4 mt-0.5 text-neon-crimson flex-shrink-0" />
+                  <p className="text-xs text-neon-text leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Agent Identity Security */}
+        <motion.section variants={fadeInUp} transition={{ duration: 0.4 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Fingerprint className="w-5 h-5 text-neon-purple" />
+            <h2 className="text-xl font-heading font-bold text-neon-text">Agent Identity Security</h2>
+          </div>
+          <p className="text-sm text-neon-text-muted mb-6 leading-relaxed">
+            Agent identity security addresses how AI agents authenticate and authorize themselves within enterprise environments. Modern Agent Identities integrate with Entra security products, replacing legacy Service Principal approaches.
+          </p>
+
+          {/* Identity Platform Components */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-purple mb-3">4-Component Identity Platform</h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                {
+                  title: 'Agent Identity Blueprint',
+                  desc: 'Parent template for creating Agent Identities (1:N relationship). Container for IT management.',
+                  num: '01',
+                },
+                {
+                  title: 'Blueprint Principal',
+                  desc: 'Security principal associated with the blueprint.',
+                  num: '02',
+                },
+                {
+                  title: 'Agent Identity',
+                  desc: 'Individual identity instance created from a blueprint.',
+                  num: '03',
+                },
+                {
+                  title: 'Agent User',
+                  desc: 'Optional user-level representation of the agent for fine-grained access.',
+                  num: '04',
+                },
+              ].map((item) => (
+                <div
+                  key={item.num}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4 relative overflow-hidden"
+                >
+                  <span className="absolute top-2 right-3 text-2xl font-heading font-bold text-neon-purple/15">
+                    {item.num}
+                  </span>
+                  <h4 className="text-sm font-heading font-bold text-neon-text mb-1">{item.title}</h4>
+                  <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Credential Hierarchy */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-purple mb-3">Credential Security Hierarchy</h3>
+            <p className="text-xs text-neon-text-muted mb-3 leading-relaxed">
+              Client credentials are configured in the Agent Identity Blueprint (not in individual Agent Identities) and used to request access tokens via the Agent Blueprint ID.
+            </p>
+            <div className="space-y-2">
+              {[
+                {
+                  rank: 1,
+                  label: 'Managed Identity (Federated Identity Credential)',
+                  tag: 'Recommended',
+                  color: 'text-neon-cyan border-neon-cyan/30 bg-neon-cyan/5',
+                  tagColor: 'bg-neon-cyan/15 text-neon-cyan',
+                },
+                {
+                  rank: 2,
+                  label: 'Client Certificate',
+                  tag: 'Moderate',
+                  color: 'text-neon-purple border-neon-purple/30 bg-neon-purple/5',
+                  tagColor: 'bg-neon-purple/15 text-neon-purple',
+                },
+                {
+                  rank: 3,
+                  label: 'Client Secret',
+                  tag: 'Avoid',
+                  color: 'text-neon-crimson border-neon-crimson/30 bg-neon-crimson/5',
+                  tagColor: 'bg-neon-crimson/15 text-neon-crimson',
+                },
+              ].map((item) => (
+                <div
+                  key={item.rank}
+                  className={`flex items-center gap-3 rounded-xl border p-4 ${item.color}`}
+                >
+                  <span className="text-lg font-heading font-bold opacity-60">#{item.rank}</span>
+                  <span className="text-sm font-heading font-bold flex-1">{item.label}</span>
+                  <span className={`text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${item.tagColor}`}>
+                    {item.tag}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Classic vs Modern */}
+          <div>
+            <h3 className="text-sm font-heading font-bold text-neon-purple mb-3">Classic vs. Modern Agents</h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="bg-neon-surface border border-neon-border rounded-xl p-5">
+                <h4 className="text-xs font-heading font-bold text-neon-text-muted uppercase tracking-wider mb-2">Classic Agents</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <XCircle className="w-3.5 h-3.5 mt-0.5 text-neon-crimson/60 flex-shrink-0" />
+                    <span>Created as Service Principals</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <XCircle className="w-3.5 h-3.5 mt-0.5 text-neon-crimson/60 flex-shrink-0" />
+                    <span>Limited integration with Entra security products</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <XCircle className="w-3.5 h-3.5 mt-0.5 text-neon-crimson/60 flex-shrink-0" />
+                    <span>Legacy approach, not recommended</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-neon-surface border border-neon-purple/30 rounded-xl p-5 neon-glow-purple">
+                <h4 className="text-xs font-heading font-bold text-neon-purple uppercase tracking-wider mb-2">Modern Agents</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 text-neon-cyan flex-shrink-0" />
+                    <span>Use Agent Identity platform</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 text-neon-cyan flex-shrink-0" />
+                    <span>Full integration with Entra ID, Conditional Access, MFA</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-xs text-neon-text-muted">
+                    <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 text-neon-cyan flex-shrink-0" />
+                    <span>Blueprint-based credential management</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Azure AI Foundry */}
+        <motion.section variants={fadeInUp} transition={{ duration: 0.4 }}>
+          <div className="flex items-center gap-2 mb-4">
+            <BrainCircuit className="w-5 h-5 text-neon-cyan" />
+            <h2 className="text-xl font-heading font-bold text-neon-text">Azure AI Foundry</h2>
+          </div>
+          <p className="text-sm text-neon-text-muted mb-6 leading-relaxed">
+            Azure AI Foundry is Microsoft's enterprise-grade platform for designing, customizing, and managing AI applications and agents. Launched in late 2024 as the evolution of Azure AI Studio, it serves as an "AI app and agent factory" unifying models, tools, data connectors, and deployment pipelines.
+          </p>
+
+          {/* Platform Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            {[
+              { value: '70K+', label: 'Customers' },
+              { value: '100T', label: 'Tokens/Quarter' },
+              { value: '10K+', label: 'Models' },
+              { value: '50%', label: 'Dev Speedup' },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-neon-surface border border-neon-border rounded-xl p-4 text-center"
+              >
+                <div className="text-lg font-heading font-bold neon-gradient-text-alt">{stat.value}</div>
+                <div className="text-[10px] text-neon-text-muted uppercase tracking-wider mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Core Components */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-cyan mb-3">Core Components</h3>
+            <div className="space-y-3">
+              {[
+                {
+                  icon: <Layers className="w-4 h-4" />,
+                  title: 'Model Catalog',
+                  desc: 'Repository of 10,000+ AI models from Microsoft, OpenAI, and open-source providers. Enables discovery, comparison, evaluation, and fine-tuning.',
+                },
+                {
+                  icon: <Cpu className="w-4 h-4" />,
+                  title: 'Agent Services',
+                  desc: 'Fully managed service for creating autonomous agents handling complex, multi-step business processes. Supports prompt chaining, external API calls, and multi-agent orchestration.',
+                },
+                {
+                  icon: <Globe className="w-4 h-4" />,
+                  title: 'Azure AI Search',
+                  desc: 'Implements RAG functionality, enabling agents to access enterprise data across documents, wikis, and databases. Provides real-time fact-grounding to reduce hallucinations.',
+                },
+                {
+                  icon: <Shield className="w-4 h-4" />,
+                  title: 'Content Safety',
+                  desc: 'Advanced filtering and moderation for AI inputs and outputs. Scans for hate speech, profanity, privacy violations, and policy breaches.',
+                },
+                {
+                  icon: <BarChart3 className="w-4 h-4" />,
+                  title: 'Observability',
+                  desc: 'Mission control hub for monitoring AI applications. Tracks performance metrics, usage trends, cost analysis, and compliance auditing.',
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4 flex items-start gap-3 hover:border-neon-cyan/30 transition-colors"
+                >
+                  <div className="text-neon-cyan mt-0.5 flex-shrink-0">{item.icon}</div>
+                  <div>
+                    <h4 className="text-sm font-heading font-bold text-neon-text mb-1">{item.title}</h4>
+                    <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Architecture */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-cyan mb-3">Platform Architecture: Hubs & Projects</h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="bg-neon-surface border border-neon-border rounded-xl p-5">
+                <h4 className="text-sm font-heading font-bold text-neon-text mb-2">Hub</h4>
+                <p className="text-xs text-neon-text-muted leading-relaxed">
+                  Manages shared resources, users, access control, and connected services at the organizational level.
+                </p>
+              </div>
+              <div className="bg-neon-surface border border-neon-border rounded-xl p-5">
+                <h4 className="text-sm font-heading font-bold text-neon-text mb-2">Project</h4>
+                <p className="text-xs text-neon-text-muted leading-relaxed">
+                  Organizes individual AI initiatives under a hub, providing structure, visibility, and collaboration tools.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Access Interfaces */}
+          <div className="mb-6">
+            <h3 className="text-sm font-heading font-bold text-neon-cyan mb-3">Access Interfaces</h3>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                { icon: <Globe className="w-4 h-4" />, title: 'Web Portal', desc: 'Point-and-click, low-code interface for rapid prototyping.' },
+                { icon: <Code2 className="w-4 h-4" />, title: 'Unified SDK', desc: 'Code-based development for advanced customization.' },
+                { icon: <Puzzle className="w-4 h-4" />, title: 'REST APIs', desc: 'Direct application integration for production workloads.' },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4 text-center"
+                >
+                  <div className="flex justify-center text-neon-cyan mb-2">{item.icon}</div>
+                  <h4 className="text-xs font-heading font-bold text-neon-text mb-1">{item.title}</h4>
+                  <p className="text-[11px] text-neon-text-muted leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Lessons Learned */}
+          <div>
+            <h3 className="text-sm font-heading font-bold text-neon-cyan mb-3">Hands-On Lessons Learned</h3>
+            <div className="bg-neon-surface border border-neon-cyan/20 rounded-xl p-5 neon-glow-cyan">
+              <div className="space-y-4">
+                {[
+                  {
+                    title: 'Model Selection Matters',
+                    desc: 'Multi-agent systems don\'t always need the largest model for every agent. Use a mix of model sizes to optimize cost -- e.g., GPT-3.5 for data extraction, GPT-4 for synthesis.',
+                  },
+                  {
+                    title: 'POC to Production Gap',
+                    desc: 'Simpler configuration and integration steps enable less specialized team members to contribute, helping more AI projects move from lab experiments to production.',
+                  },
+                  {
+                    title: 'Multi-Agent Architecture',
+                    desc: 'Many real-world processes are too complex for one agent alone. Multi-agent systems distribute work across specialized agents while maintaining coordination.',
+                  },
+                  {
+                    title: 'Connector Ecosystem',
+                    desc: 'Connects to 1,400+ data sources and APIs via pre-built connectors, maintaining conversational state and managing parallel tasks.',
+                  },
+                ].map((item) => (
+                  <div key={item.title}>
+                    <h4 className="text-xs font-heading font-bold text-neon-text mb-0.5">{item.title}</h4>
+                    <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      </motion.div>
+    </PageShell>
+  )
+}
