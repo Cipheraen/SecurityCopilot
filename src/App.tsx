@@ -3,6 +3,7 @@ import { Layout } from './components/Layout'
 import { Introduction } from './pages/security-copilot/Introduction'
 import { Agents } from './pages/security-copilot/Agents'
 import { Prompts } from './pages/security-copilot/Prompts'
+import { PromptLibrary } from './pages/security-copilot/PromptLibrary'
 import { BestPractices } from './pages/security-copilot/BestPractices'
 import { AzureBestPractices } from './pages/azure-ai/AzureBestPractices'
 import { ThreatIntelligence } from './pages/resources/ThreatIntelligence'
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Introduction />} />
           <Route path="agents" element={<Agents />} />
           <Route path="prompts" element={<Prompts />} />
+          <Route path="prompt-library" element={<PromptLibrary />} />
           <Route path="best-practices" element={<BestPractices />} />
           <Route path="azure-ai/best-practices" element={<AzureBestPractices />} />
           <Route path="resources/threat-intelligence" element={<ThreatIntelligence />} />

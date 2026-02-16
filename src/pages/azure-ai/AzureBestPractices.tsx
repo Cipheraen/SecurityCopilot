@@ -219,31 +219,24 @@ export function AzureBestPractices() {
                 {
                   title: 'Agent Identity Blueprint',
                   desc: 'Parent template for creating Agent Identities (1:N relationship). Container for IT management.',
-                  num: '01',
                 },
                 {
                   title: 'Blueprint Principal',
                   desc: 'Security principal associated with the blueprint.',
-                  num: '02',
                 },
                 {
                   title: 'Agent Identity',
                   desc: 'Individual identity instance created from a blueprint.',
-                  num: '03',
                 },
                 {
                   title: 'Agent User',
                   desc: 'Optional user-level representation of the agent for fine-grained access.',
-                  num: '04',
                 },
               ].map((item) => (
                 <div
-                  key={item.num}
-                  className="bg-neon-surface border border-neon-border rounded-xl p-4 relative overflow-hidden"
+                  key={item.title}
+                  className="bg-neon-surface border border-neon-border rounded-xl p-4"
                 >
-                  <span className="absolute top-2 right-3 text-2xl font-heading font-bold text-neon-purple/15">
-                    {item.num}
-                  </span>
                   <h4 className="text-sm font-heading font-bold text-neon-text mb-1">{item.title}</h4>
                   <p className="text-xs text-neon-text-muted leading-relaxed">{item.desc}</p>
                 </div>
@@ -285,7 +278,6 @@ export function AzureBestPractices() {
                   key={item.rank}
                   className={`flex items-center gap-3 rounded-xl border p-4 ${item.color}`}
                 >
-                  <span className="text-lg font-heading font-bold opacity-60">#{item.rank}</span>
                   <span className="text-sm font-heading font-bold flex-1">{item.label}</span>
                   <span className={`text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${item.tagColor}`}>
                     {item.tag}

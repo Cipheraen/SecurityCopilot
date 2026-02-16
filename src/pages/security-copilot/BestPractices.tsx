@@ -14,6 +14,7 @@ import {
   Layers,
   Target,
   CheckCircle2,
+  ExternalLink,
 } from 'lucide-react'
 import { PageShell } from '../../components/PageShell'
 
@@ -171,20 +172,17 @@ export function BestPractices() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
-                { step: '01', title: 'Provision Capacity', desc: 'Set up SCUs in Azure portal' },
-                { step: '02', title: 'Configure Plugins', desc: 'Enable relevant Microsoft and third-party plugins' },
-                { step: '03', title: 'Set Up Roles', desc: 'Configure role-based access controls' },
-                { step: '04', title: 'Onboard Users', desc: 'Train security team on prompting and promptbooks' },
-                { step: '05', title: 'Start with Pre-built', desc: 'Use existing promptbooks and prompt libraries' },
-                { step: '06', title: 'Iterate & Customize', desc: 'Build custom promptbooks and agents as needs evolve' },
+                { title: 'Provision Capacity', desc: 'Set up SCUs in Azure portal' },
+                { title: 'Configure Plugins', desc: 'Enable relevant Microsoft and third-party plugins' },
+                { title: 'Set Up Roles', desc: 'Configure role-based access controls' },
+                { title: 'Onboard Users', desc: 'Train security team on prompting and promptbooks' },
+                { title: 'Start with Pre-built', desc: 'Use existing promptbooks and prompt libraries' },
+                { title: 'Iterate & Customize', desc: 'Build custom promptbooks and agents as needs evolve' },
               ].map((item) => (
                 <div
-                  key={item.step}
-                  className="bg-neon-elevated/50 rounded-lg p-4 relative overflow-hidden"
+                  key={item.title}
+                  className="bg-neon-elevated/50 rounded-lg p-4"
                 >
-                  <span className="text-2xl font-heading font-bold text-neon-crimson/10 absolute top-2 right-3">
-                    {item.step}
-                  </span>
                   <p className="text-sm font-heading font-bold text-neon-text mb-1">{item.title}</p>
                   <p className="text-xs text-neon-text-muted">{item.desc}</p>
                 </div>
@@ -296,23 +294,27 @@ export function BestPractices() {
           <div className="bg-neon-surface border border-neon-border rounded-xl p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { name: 'Security Copilot Technical Training', desc: 'Global technical workshops for hands-on learning' },
-                { name: 'Microsoft Learn Training Path', desc: '"Get started with Microsoft Security Copilot" learning path' },
-                { name: 'Video Hub', desc: 'Bite-sized insights and deep-dive demos' },
-                { name: 'GitHub Repository', desc: 'Sample plugins for customization and extension' },
-                { name: 'Ninja Training', desc: 'In-depth training via Microsoft Tech Community' },
-                { name: 'Customer Connection Program', desc: 'Free (NDA required): webinars, previews, roadmap access' },
+                { name: 'Security Copilot Technical Training', desc: 'Global technical workshops for hands-on learning', url: 'https://techcommunity.microsoft.com/blog/microsoft-security-blog/accelerate-your-security-copilot-readiness-with-our-global-technical-workshop-se/4483805' },
+                { name: 'Microsoft Learn Training Path', desc: '"Get started with Microsoft Security Copilot" learning path', url: 'https://learn.microsoft.com/en-us/training/paths/security-copilot-and-ai/' },
+                { name: 'Video Hub', desc: 'Bite-sized insights and deep-dive demos', url: 'https://adoption.microsoft.com/en-us/security-copilot/video-hub/' },
+                { name: 'GitHub Repository', desc: 'Sample plugins for customization and extension', url: 'https://github.com/Azure/Security-Copilot' },
+                { name: 'Ninja Training', desc: 'In-depth training via Microsoft Tech Community', url: 'https://techcommunity.microsoft.com/blog/securitycopilotblog/how-to-become-a-microsoft-security-copilot-ninja-the-complete-level-400-training/4106928' },
+                { name: 'Customer Connection Program', desc: 'Free (NDA required): webinars, previews, roadmap access', url: 'https://aka.ms/JoinCCP' },
               ].map((res) => (
-                <div
+                <a
                   key={res.name}
-                  className="bg-neon-elevated/50 rounded-lg p-3 flex items-start gap-2"
+                  href={res.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-neon-elevated/50 rounded-lg p-3 flex items-start gap-2 hover:bg-neon-elevated transition-colors"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5 text-neon-crimson mt-0.5 shrink-0" />
-                  <div>
-                    <p className="text-xs font-heading font-bold text-neon-text">{res.name}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-heading font-bold text-neon-text group-hover:text-neon-cyan transition-colors">{res.name}</p>
                     <p className="text-xs text-neon-text-muted">{res.desc}</p>
                   </div>
-                </div>
+                  <ExternalLink className="w-3 h-3 text-neon-text-muted group-hover:text-neon-cyan transition-colors mt-0.5 shrink-0" />
+                </a>
               ))}
             </div>
           </div>

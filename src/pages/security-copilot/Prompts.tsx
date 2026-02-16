@@ -112,17 +112,15 @@ export function Prompts() {
           <div className="bg-neon-surface border border-neon-border rounded-xl p-6">
             <div className="flex flex-col gap-3">
               {[
-                { step: '1', text: 'Type your question or instruction in the prompt bar' },
-                { step: '2', text: 'Select Send or press Enter to submit' },
-                { step: '3', text: 'Security Copilot generates a response using its 4-stage pipeline' },
-                { step: '4', text: 'Review the process log for transparency into steps taken' },
-                { step: '5', text: 'Provide feedback on response accuracy to improve future results' },
-              ].map((item) => (
-                <div key={item.step} className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-neon-crimson/10 text-neon-crimson text-xs font-heading font-bold shrink-0">
-                    {item.step}
-                  </span>
-                  <p className="text-sm text-neon-text-muted">{item.text}</p>
+                'Type your question or instruction in the prompt bar',
+                'Select Send or press Enter to submit',
+                'Security Copilot generates a response using its 4-stage pipeline',
+                'Review the process log for transparency into steps taken',
+                'Provide feedback on response accuracy to improve future results',
+              ].map((text) => (
+                <div key={text} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-neon-crimson shrink-0" />
+                  <p className="text-sm text-neon-text-muted">{text}</p>
                 </div>
               ))}
             </div>
@@ -168,17 +166,12 @@ export function Prompts() {
             Top 5 Prompting Tips
           </h2>
           <div className="space-y-4">
-            {promptTips.map((tip, i) => (
+            {promptTips.map((tip) => (
               <div
                 key={tip.title}
                 className="bg-neon-surface border border-neon-border rounded-xl p-5"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="flex items-center justify-center w-6 h-6 rounded-md bg-neon-purple/10 text-neon-purple text-xs font-heading font-bold">
-                    {i + 1}
-                  </span>
-                  <h3 className="text-sm font-heading font-bold text-neon-text">{tip.title}</h3>
-                </div>
+                <h3 className="text-sm font-heading font-bold text-neon-text mb-2">{tip.title}</h3>
                 <p className="text-xs text-neon-text-muted mb-3 leading-relaxed">{tip.desc}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="bg-neon-elevated/50 border border-neon-crimson/10 rounded-lg p-3">

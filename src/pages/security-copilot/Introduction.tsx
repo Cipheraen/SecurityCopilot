@@ -64,7 +64,10 @@ export function Introduction() {
                 <Monitor className="w-4 h-4 text-neon-cyan mt-0.5 shrink-0" />
                 <span className="text-xs text-neon-text-muted">
                   <span className="text-neon-text font-medium">Standalone</span> -- Dedicated
-                  interface at securitycopilot.microsoft.com
+                  interface at{' '}
+                  <a href="https://securitycopilot.microsoft.com/" target="_blank" rel="noopener noreferrer" className="text-neon-cyan hover:underline">
+                    securitycopilot.microsoft.com
+                  </a>
                 </span>
               </div>
               <div className="flex items-start gap-2">
@@ -92,28 +95,24 @@ export function Introduction() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                stage: '01',
                 title: 'Input Reception',
                 desc: 'User prompts from security products are sent to Security Copilot for processing.',
                 color: 'text-neon-crimson',
                 borderColor: 'border-neon-crimson/20',
               },
               {
-                stage: '02',
                 title: 'Preprocessing',
                 desc: 'Grounding stage improves prompt specificity, accesses plugins for initial data context.',
                 color: 'text-neon-purple',
                 borderColor: 'border-neon-purple/20',
               },
               {
-                stage: '03',
                 title: 'LLM Processing',
                 desc: 'Grounded prompt is sent to the language model using security-specific plugins as data sources.',
                 color: 'text-neon-cyan',
                 borderColor: 'border-neon-cyan/20',
               },
               {
-                stage: '04',
                 title: 'Post-processing',
                 desc: 'Response is enriched with organizational context and plugin data before delivery.',
                 color: 'text-neon-crimson',
@@ -121,12 +120,9 @@ export function Introduction() {
               },
             ].map((item) => (
               <div
-                key={item.stage}
-                className={`bg-neon-surface border ${item.borderColor} rounded-xl p-5 relative overflow-hidden`}
+                key={item.title}
+                className={`bg-neon-surface border ${item.borderColor} rounded-xl p-5`}
               >
-                <span className={`text-3xl font-heading font-bold ${item.color} opacity-20 absolute top-3 right-4`}>
-                  {item.stage}
-                </span>
                 <h3 className={`text-sm font-heading font-bold ${item.color} mb-2`}>
                   {item.title}
                 </h3>

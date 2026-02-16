@@ -228,12 +228,11 @@ export function ThreatIntelligence() {
                 className="bg-neon-surface border border-neon-border rounded-xl p-5 hover:border-neon-crimson/30 transition-colors group"
               >
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-neon-crimson/10 text-neon-crimson flex-shrink-0 font-heading font-bold text-sm">
-                    {String(index + 1).padStart(2, '0')}
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-neon-crimson/10 text-neon-crimson flex-shrink-0">
+                    {item.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-neon-crimson">{item.icon}</span>
                       <h3 className="text-sm font-heading font-bold text-neon-text">
                         {item.id}: {item.title}
                       </h3>
@@ -326,13 +325,13 @@ export function ThreatIntelligence() {
           <div className="mb-6">
             <h3 className="text-sm font-heading font-bold text-neon-purple mb-3">Complete Tactics Matrix</h3>
             <div className="grid gap-2">
-              {atlasTactics.map((tactic, index) => (
+              {atlasTactics.map((tactic) => (
                 <div
                   key={tactic.id}
                   className="bg-neon-surface border border-neon-border rounded-lg p-3 flex items-start gap-3 hover:border-neon-purple/30 transition-colors"
                 >
-                  <div className="flex items-center justify-center w-7 h-7 rounded-md bg-neon-purple/10 text-neon-purple flex-shrink-0 text-[10px] font-heading font-bold">
-                    {String(index + 1).padStart(2, '0')}
+                  <div className="flex items-center justify-center w-7 h-7 rounded-md bg-neon-purple/10 text-neon-purple flex-shrink-0">
+                    {tactic.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 mb-0.5">

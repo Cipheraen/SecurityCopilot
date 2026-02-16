@@ -145,11 +145,92 @@ const linkCategories: LinkCategory[] = [
     ],
   },
   {
+    heading: 'Product Integration Docs',
+    icon: <BookOpen className="w-4 h-4" />,
+    accent: 'text-neon-text-muted',
+    badgeColor: 'bg-neon-elevated text-neon-text-muted border-neon-border',
+    links: [
+      {
+        title: 'Security Copilot in Defender XDR',
+        url: 'https://learn.microsoft.com/en-us/defender-xdr/security-copilot-in-microsoft-365-defender',
+        description: 'Incident summarization, guided response, script analysis, and advanced hunting integration.',
+      },
+      {
+        title: 'Security Copilot in Microsoft Sentinel',
+        url: 'https://learn.microsoft.com/en-us/azure/sentinel/sentinel-security-copilot',
+        description: 'NL2KQL threat hunting, incident correlation, and cloud-native SIEM integration.',
+      },
+      {
+        title: 'Security Copilot in Microsoft Entra',
+        url: 'https://learn.microsoft.com/en-us/entra/security-copilot/security-copilot-in-entra',
+        description: 'Identity risk investigation, sign-in analysis, and conditional access optimization.',
+      },
+      {
+        title: 'Copilot in Microsoft Purview',
+        url: 'https://learn.microsoft.com/en-us/purview/copilot-in-purview-promptbooks',
+        description: 'DLP alert triage, insider risk investigation, and data security prompts and promptbooks.',
+      },
+      {
+        title: 'Copilot in Microsoft Intune',
+        url: 'https://learn.microsoft.com/en-us/intune/intune-service/copilot/copilot-devices',
+        description: 'Device compliance, vulnerability remediation, troubleshooting, and endpoint security.',
+      },
+    ],
+  },
+  {
+    heading: 'Training & Learning',
+    icon: <BookOpen className="w-4 h-4" />,
+    accent: 'text-neon-text-muted',
+    badgeColor: 'bg-neon-elevated text-neon-text-muted border-neon-border',
+    links: [
+      {
+        title: 'Microsoft Learn -- Security Copilot Training Path',
+        url: 'https://learn.microsoft.com/en-us/training/paths/security-copilot-and-ai/',
+        description: 'Official "Get started with Microsoft Security Copilot" learning path on Microsoft Learn.',
+      },
+      {
+        title: 'Security Copilot Ninja Training',
+        url: 'https://techcommunity.microsoft.com/blog/securitycopilotblog/how-to-become-a-microsoft-security-copilot-ninja-the-complete-level-400-training/4106928',
+        description: 'Complete Level 400 training program via Microsoft Tech Community for advanced practitioners.',
+      },
+      {
+        title: 'Security Copilot Technical Workshops',
+        url: 'https://techcommunity.microsoft.com/blog/microsoft-security-blog/accelerate-your-security-copilot-readiness-with-our-global-technical-workshop-se/4483805',
+        description: 'Free virtual hands-on workshops with scenario-based instruction, live demos, and expert Q&A.',
+      },
+      {
+        title: 'Security Copilot Video Hub',
+        url: 'https://adoption.microsoft.com/en-us/security-copilot/video-hub/',
+        description: 'Bite-sized insights and deep dives -- quick overviews, use cases, and customer spotlights.',
+      },
+      {
+        title: 'Azure Security Copilot GitHub Repository',
+        url: 'https://github.com/Azure/Security-Copilot',
+        description: 'Official Microsoft repository with sample plugins, promptbooks, and customization resources.',
+      },
+    ],
+  },
+  {
     heading: 'Additional Resources',
     icon: <BookOpen className="w-4 h-4" />,
     accent: 'text-neon-text-muted',
     badgeColor: 'bg-neon-elevated text-neon-text-muted border-neon-border',
     links: [
+      {
+        title: 'Security Copilot Prompting Guide',
+        url: 'https://learn.microsoft.com/en-us/copilot/security/prompting-tips',
+        description: 'Official best practices for creating effective prompts in Security Copilot.',
+      },
+      {
+        title: 'Security Copilot Plugins Overview',
+        url: 'https://learn.microsoft.com/en-us/copilot/security/plugin-overview',
+        description: 'Plugin architecture, available plugins, and custom plugin development documentation.',
+      },
+      {
+        title: 'Security Copilot SCU Management',
+        url: 'https://learn.microsoft.com/en-us/copilot/security/manage-usage',
+        description: 'Security Compute Unit (SCU) provisioning, monitoring, and usage management.',
+      },
       {
         title: 'OWASP CycloneDX -- SBOM Standard',
         url: 'https://cyclonedx.org/',
